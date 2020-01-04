@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Root">
+    <siteMapNode title="Home" url="Default.aspx">
+    </siteMapNode>    
+    <siteMapNode title="Company">
+      <siteMapNode title="News" url="Page.aspx?tag=LearnixNews" />
+      <siteMapNode title="About" url="Page.aspx?tag=TargetLabsLearnix" />      
+      <siteMapNode title="Team" url="Page.aspx?tag=LearnixTeam" />        
+    </siteMapNode>
+    <siteMapNode title="Courses" url="Page.aspx?tag=Courses">
+        <siteMapNode title="ST Fundamentals" url="Page.aspx?tag=STFundamentals" />
+        <siteMapNode title="ST Express" url="Page.aspx?tag=STExpress" />
+        <siteMapNode title="Individual Training" url="Page.aspx?tag=IndividualTraining" />
+    </siteMapNode>
+    <siteMapNode title="Contacts" url="Page.aspx?tag=LearnixContacts">
+    </siteMapNode>
+      <siteMapNode title="Apply" url="SubmitResume.aspx">
+      </siteMapNode>
+  </siteMapNode>
+</siteMap>

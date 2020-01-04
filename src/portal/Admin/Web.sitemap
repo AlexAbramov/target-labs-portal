@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Root">
+      <siteMapNode title="Start" url="Default.aspx">
+      </siteMapNode>
+      <siteMapNode title="Positions" url="Positions.aspx">
+      </siteMapNode>
+      <siteMapNode title="Photo gallery" url="" >
+        <siteMapNode title="Albums" url="Galleries.aspx" />
+        <siteMapNode title="Add album" url="Gallery.aspx" />      
+    </siteMapNode>    
+    <siteMapNode title="Web site" url="">
+      <siteMapNode title="Polls" url="Polls.aspx" />
+      <siteMapNode title="Load image" url="Upload.aspx" />      
+    </siteMapNode>
+    <siteMapNode title="System" url="">
+      <siteMapNode title="Control panel" url="ControlPanel.aspx" />
+      <siteMapNode title="Log" url="Log.aspx" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

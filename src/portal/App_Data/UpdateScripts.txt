@@ -1,0 +1,298 @@
+﻿-- ScriptId=9
+
+CREATE TABLE [Candidates](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[PositionId] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Name] [varchar](50) NULL,
+	[Surname] [varchar](50) NULL,
+	[Address] [varchar](200) NULL,
+	[Phone] [varchar](50) NULL,
+	[Link] [varchar](200) NULL,
+	[Email] [varchar](200) NULL,
+    [Resume] [varchar](200) NULL,
+	[Comments] [varchar](8000) NULL,
+	[Status] [int] NOT NULL
+	)
+
+-- ScriptId=8
+
+ALTER TABLE ArticleParams
+ADD [Status] [int] NOT NULL
+
+-- ScriptId=7
+
+update Articles set ParentId=0
+
+CREATE TABLE [ArticleParams](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[ArticleId] [int] NOT NULL,
+	[Key] [varchar](50) NOT NULL,
+	[Value] [varchar](4000) NOT NULL,
+	
+	)
+
+-- ScriptId=6
+
+EXEC sp_rename
+    @objname = 'Articles.ArticleTypeId',
+    @newname = 'ParentId',
+    @objtype = 'COLUMN'
+
+ALTER TABLE Articles
+ADD IsGroup BIT NOT NULL
+DEFAULT 0 
+
+-- SrciptId=5
+
+insert into Pages (Name, BannerTopicId) values ('About', 1)
+insert into Pages (Name, BannerTopicId) values ('Article', 1)
+insert into Pages (Name, BannerTopicId) values ('Articles', 1)
+insert into Pages (Name, BannerTopicId) values ('BusinessNews', 1)
+insert into Pages (Name, BannerTopicId) values ('CommonForum', 1)
+insert into Pages (Name, BannerTopicId) values ('Company', 1)
+insert into Pages (Name, BannerTopicId) values ('Contacts', 1)
+insert into Pages (Name, BannerTopicId) values ('Default', 1)
+insert into Pages (Name, BannerTopicId) values ('Galleries', 1)
+insert into Pages (Name, BannerTopicId) values ('Gallery', 1)
+insert into Pages (Name, BannerTopicId) values ('GalleryImage', 1)
+insert into Pages (Name, BannerTopicId) values ('LinkExchange', 1)
+insert into Pages (Name, BannerTopicId) values ('Login', 1)
+insert into Pages (Name, BannerTopicId) values ('News', 1)
+insert into Pages (Name, BannerTopicId) values ('PollResults', 1)
+insert into Pages (Name, BannerTopicId) values ('Services', 1)
+
+
+-- ScriptId=4
+
+insert into ArticleTypes values (1, 'Article')
+insert into ArticleTypes values (2, 'Digest')
+insert into ArticleTypes values (3, 'News')
+insert into ArticleTypes values (4, 'Web page')
+insert into ArticleTypes values (5, 'Product description')
+
+insert into Statuses values (-2, 'Removed','r')
+insert into Statuses values (-1, 'Hidden','h')
+insert into Statuses values (0, 'New','n')
+insert into Statuses values (1, 'Admin','a')
+insert into Statuses values (2, 'Moderator','m')
+insert into Statuses values (3, 'Trusted','t')
+insert into Statuses values (4, 'Imported','i')
+
+insert into BannerTopics (Id, Name) values (1, 'Default')
+
+-- ScriptId=3
+
+insert into LogTypes values (1, 'Info')
+insert into LogTypes values (2, 'Warning')
+insert into LogTypes values (3, 'Error')
+insert into LogTypes values (4, 'Exception')
+insert into LogTypes values (5, 'Custom')
+
+-- ScriptId=2
+
+insert into BannerGroups values (1, '600х90', 600, 90)
+insert into BannerGroups values (2, '240х400', 240, 400)
+insert into BannerGroups values (3, '150x150', 150, 150)
+insert into BannerGroups values (4, '240x100', 240, 100)
+
+insert into LinkExchange values (1,'2008','')
+insert into LinkExchange values (2,'2008','')
+insert into LinkExchange values (3,'2008','')
+insert into LinkExchange values (4,'2008','')
+insert into LinkExchange values (5,'2008','')
+
+-- ScriptId=1
+
+CREATE TABLE [Log](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[Time] [datetime] NOT NULL,
+	[SessionId] [int] NOT NULL,
+	[LogTypeId] [int] NOT NULL,
+	[Page] [varchar](200) NULL,
+	[Message] [varchar](4000) NULL
+	)
+
+
+CREATE TABLE [LogTypes](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Name] [varchar](50) NOT NULL
+	)
+
+
+
+CREATE TABLE [Statuses](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Name] [varchar](50) NOT NULL,
+	[Symbol] [char](1) NOT NULL
+	)
+
+CREATE TABLE [Cities](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Name] [varchar](50) NOT NULL
+	)
+
+CREATE TABLE [Articles](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[ArticleTypeId] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Person] [varchar](50) NULL,
+	[Title] [varchar](500) NULL,
+	[Preview] [varchar](50) NULL,
+	[Header] [varchar](1000) NULL,
+	[Text] [varchar](max) NULL,
+	[Company] [varchar](100) NULL,
+	[CityId] [int] NULL,
+	[Address] [varchar](200) NULL,
+	[Phone] [varchar](100) NULL,
+	[Link] [varchar](200) NULL,
+	[Email] [varchar](100) NULL,
+	[Status] [int] NOT NULL,
+	[Tag] [varchar](50) NULL
+	)
+
+CREATE TABLE [Galleries](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[CommunityId] [int] NOT NULL,
+	[Name] [varchar](200) NOT NULL,
+	[Text] [varchar](1000) NULL,
+	[Status] [int] NOT NULL,
+	[Logo] [varchar](50) NULL
+	)
+
+CREATE TABLE [GalleryImages](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[GalleryId] [int] NOT NULL,
+	[Filename] [varchar](50) NOT NULL,
+	[Name] [varchar](200) NULL,
+	[Text] [varchar](1000) NULL,
+	[Status] [int] NOT NULL
+	)
+
+CREATE TABLE [BannerGroups](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Name] [varchar](200) NOT NULL,
+	[Width] [int] NOT NULL,
+	[Height] [int] NOT NULL
+	)
+
+CREATE TABLE [Banners](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[BannerGroupId] [int] NOT NULL,
+	[Filename] [varchar](200) NOT NULL,
+	[Link] [varchar](200) NULL,
+	[Status] [int] NOT NULL,
+	[Name] [varchar](200) NOT NULL DEFAULT (''),
+	[Code] [varchar](8000) NULL
+	)
+
+CREATE TABLE [BannerTopics](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Name] [varchar](200) NOT NULL,
+	[B1] [int] NULL,
+	[B2] [int] NULL,
+	[B3] [int] NULL,
+	[B4] [int] NULL,
+	[B5] [int] NULL,
+	[B6] [int] NULL,
+	[B7] [int] NULL,
+	[B8] [int] NULL,
+	[B9] [int] NULL
+	)
+
+CREATE TABLE [Pages](
+	[Id] [int] IDENTITY(101,1) NOT NULL PRIMARY KEY,
+	[Name] [varchar](200) NOT NULL,
+	[BannerTopicId] [int] NOT NULL,
+	[Title] [varchar](200) NULL,
+	[Description] [varchar](500) NULL,
+	[Keywords] [varchar](500) NULL
+	)
+
+CREATE TABLE [Polls](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[Date] [datetime] NOT NULL,
+	[Question] [varchar](500) NOT NULL,
+	[Status] [int] NOT NULL
+	)
+
+CREATE TABLE [PollAnswers](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[PollId] [int] NOT NULL,
+	[Answer] [varchar](200) NOT NULL,
+	[Count] [int] NOT NULL,
+	[Status] [int] NOT NULL
+	)
+
+CREATE TABLE [LinkExchange](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Date] [datetime] NOT NULL,
+	[Text] [varchar](max) NOT NULL
+	)
+
+CREATE TABLE [UserInfo](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[RecordId] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Name] [varchar](200) NOT NULL,
+	[Email] [varchar](100) NOT NULL,
+	[Psw] [varchar](100) NOT NULL,
+	[UserRole] [int] NOT NULL,
+	[Status] [int] NOT NULL,
+	[Picture] [varchar](50) NULL
+	)
+
+CREATE TABLE [Forums](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[CommunityId] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Name] [varchar](200) NOT NULL,
+	[Description] [varchar](5000) NULL,
+	[Status] [int] NOT NULL
+	)
+
+CREATE TABLE [ForumTopics](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[ForumId] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Name] [varchar](200) NOT NULL,
+	[Description] [varchar](5000) NULL,
+	[Status] [int] NOT NULL
+	)
+
+CREATE TABLE [ForumMessages](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[MessageId] [int] NOT NULL,
+	[ForumTopicId] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[UserName] [varchar](200) NULL,
+	[Text] [varchar](8000) NOT NULL,
+	[Status] [int] NOT NULL
+	)
+
+CREATE TABLE [Texts](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Date] [datetime] NOT NULL,
+	[Name] [varchar](200) NOT NULL,
+	[Text] [varchar](max) NOT NULL,
+	[Status] [int] NOT NULL
+	)
+
+CREATE TABLE [Companies](
+	[Id] [int] IDENTITY NOT NULL PRIMARY KEY,
+	[CityId] [int] NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[ContactPerson] [varchar](50) NOT NULL,
+	[Phone] [varchar](50) NOT NULL,
+	[Email] [varchar](50) NOT NULL,
+	[Link] [varchar](50) NOT NULL
+	)
+
+CREATE TABLE [ArticleTypes](
+	[Id] [int] NOT NULL PRIMARY KEY,
+	[Name] [varchar](50) NOT NULL
+	)
+
+
+

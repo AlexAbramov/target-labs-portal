@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Root">
+    <siteMapNode title="Home" url="Default.aspx">
+    </siteMapNode>    
+    <siteMapNode title="Company" url="Page.aspx?tag=Company" >
+      <siteMapNode title="News" url="Page.aspx?tag=News" />
+      <!--<siteMapNode title="Positions" url="Page.aspx?tag=Positions" />-->
+      <siteMapNode title="Mission" url="Page.aspx?tag=Mission" />      
+      <siteMapNode title="Team" url="Page.aspx?tag=Team" />
+      <siteMapNode title="Clients" url="Page.aspx?tag=Clients" />
+      <siteMapNode title="Partners" url="Page.aspx?tag=Partners" />        
+    </siteMapNode>    
+    <siteMapNode title="Services" url="Page.aspx?tag=Services">
+      <siteMapNode title="IT Security" url="Page.aspx?tag=ITSecurity" />
+      <siteMapNode title="IT Staffing" url="Page.aspx?tag=ITStaffing" />
+        <siteMapNode title="IT Consulting" url="Page.aspx?tag=ITConsulting" />
+        <siteMapNode title="IT Quality Assurance" url="Page.aspx?tag=ITQualityAssurance" />       
+        <siteMapNode title="Project Management" url="Page.aspx?tag=ProjectManagement" />
+      <siteMapNode title="Internship" url="Page.aspx?tag=Internship" />
+      <siteMapNode title="Security Training" url="Page.aspx?tag=SecurityTraining" />        
+    </siteMapNode>
+    <!--<siteMapNode title="Clients &amp; Partners" url="Page.aspx?tag=ClientsAndPartners" />-->
+      <siteMapNode title="Contacts" url="Page.aspx?tag=Contacts">
+      </siteMapNode>
+      <siteMapNode title="Send Resume" url="SubmitResume.aspx">
+      </siteMapNode>
+  </siteMapNode>
+</siteMap>
